@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demander un Devis - ALUPRIME</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="icon" type="image/png" href="img/_logo.png" />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      .configurator {
+        background: var(--off-white);
+        min-height: 100vh;
+        padding-top: 8rem;
+      }
+
+      .configurator-box {
+        background: white;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(15, 27, 42, 0.1);
+      }
+
+      .progress-bar {
+        background: var(--off-white);
+        padding: 2.5rem 3rem;
+      }
+
+      .progress-steps {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .step {
+        display: flex;
+        align-items: center;
+        flex: 1;
+      }
+
+      .step-number {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        background: white;
+        color: var(--gray);
+        border: 2px solid var(--light-gray);
+        transition: all 0.3s ease;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .step-number.active {
+        background: var(--navy);
+        color: white;
+        border-color: var(--navy);
+        transform: scale(1.1);
+      }
+
+      .step-line {
+        flex: 1;
+        height: 3px;
+        background: var(--light-gray);
+        margin: 0 1rem;
+        transition: background 0.3s ease;
+      }
+
+      .step-line.active {
+        background: var(--navy);
+      }
+
+      .config-content {
+        padding: 3rem;
+      }
+
+      .config-step {
+        display: none;
+      }
+
+      .config-step.active {
+        display: block;
+        animation: fadeIn 0.4s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .config-step h3 {
+        font-size: 2rem;
+        color: var(--navy);
+        margin-bottom: 2.5rem;
+      }
+
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .product-option {
+        padding: 2.5rem 1.5rem;
+        border: 2px solid var(--light-gray);
+        border-radius: 16px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: white;
+      }
+
+      .product-option:hover {
+        border-color: var(--navy);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(15, 27, 42, 0.1);
+      }
+
+      .product-option.selected {
+        border-color: var(--red);
+        background: rgba(173, 23, 29, 0.03);
+      }
+
+      .product-option .icon {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .form-group {
+        margin-bottom: 2rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.8rem;
+        font-weight: 600;
+        color: var(--navy);
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 1rem 1.2rem;
+        border: 2px solid var(--light-gray);
+        border-radius: 10px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        font-family: "Inter", sans-serif;
+      }
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--navy);
+        box-shadow: 0 0 0 3px rgba(15, 27, 42, 0.1);
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .color-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+        gap: 1rem;
+      }
+
+      .color-option {
+        padding: 1rem;
+        border: 2px solid var(--light-gray);
+        border-radius: 10px;
+        text-align: center;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        background: white;
+      }
+
+      .color-option:hover {
+        border-color: var(--navy);
+        transform: translateY(-3px);
+      }
+
+      .color-option.selected {
+        border-color: var(--red);
+        background: rgba(173, 23, 29, 0.05);
+      }
+
+      .config-actions {
+        display: flex;
+        gap: 1.5rem;
+        margin-top: 2.5rem;
+        justify-content: space-between;
+      }
+
+      .summary-box {
+        background: var(--off-white);
+        padding: 2rem;
+        border-radius: 16px;
+        margin-bottom: 2rem;
+      }
+
+      .summary-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--light-gray);
+      }
+
+      .summary-item:last-child {
+        border-bottom: none;
+        font-weight: 700;
+        font-size: 1.3rem;
+        color: var(--red);
+      }
+
+      @media (max-width: 968px) {
+        .configurator {
+          padding-top: 6rem;
+        }
+
+        .progress-bar {
+          padding: 2rem 1.5rem;
+        }
+
+        .step-number {
+          width: 45px;
+          height: 45px;
+          font-size: 0.95rem;
+        }
+
+        .step-line {
+          margin: 0 0.5rem;
+        }
+
+        .config-content {
+          padding: 2rem 1.5rem;
+        }
+
+        .config-step h3 {
+          font-size: 1.6rem;
+          margin-bottom: 2rem;
+        }
+
+        .product-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 1rem;
+        }
+
+        .product-option {
+          padding: 2rem 1rem;
+          border-radius: 12px;
+        }
+
+        .product-option .icon {
+          font-size: 3rem;
+        }
+
+        .form-row {
+          grid-template-columns: 1fr;
+          gap: 1.2rem;
+        }
+
+        .color-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.8rem;
+        }
+
+        .config-actions {
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .config-actions .btn {
+          width: 100%;
+        }
+
+        .summary-box {
+          padding: 1.5rem;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .configurator {
+          padding-top: 5rem;
+        }
+
+        .progress-bar {
+          padding: 1.5rem 1rem;
+        }
+
+        .progress-steps {
+          margin-bottom: 1rem;
+        }
+
+        .step-number {
+          width: 40px;
+          height: 40px;
+          font-size: 0.9rem;
+        }
+
+        .step-line {
+          margin: 0 0.3rem;
+        }
+
+        .config-content {
+          padding: 1.5rem 1rem;
+        }
+
+        .config-step h3 {
+          font-size: 1.4rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .product-grid {
+          grid-template-columns: 1fr;
+          gap: 0.8rem;
+        }
+
+        .product-option {
+          padding: 1.5rem 1rem;
+        }
+
+        .product-option .icon {
+          font-size: 2.5rem;
+          margin-bottom: 0.8rem;
+        }
+
+        .form-group label {
+          font-size: 0.9rem;
+          margin-bottom: 0.6rem;
+        }
+
+        .form-group input,
+        .form-group select {
+          padding: 0.85rem 1rem;
+          font-size: 0.9rem;
+        }
+
+        .color-grid {
+          grid-template-columns: 1fr;
+          gap: 0.6rem;
+        }
+
+        .color-option {
+          padding: 0.85rem;
+          font-size: 0.9rem;
+        }
+
+        .summary-box {
+          padding: 1.2rem;
+          border-radius: 12px;
+        }
+
+        .summary-item {
+          padding: 0.8rem 0;
+          font-size: 0.9rem;
+        }
+
+        .summary-item:last-child {
+          font-size: 1.1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .progress-bar {
+          padding: 1.2rem 0.8rem;
+        }
+
+        .step-number {
+          width: 36px;
+          height: 36px;
+          font-size: 0.85rem;
+        }
+
+        .config-content {
+          padding: 1.2rem 0.8rem;
+        }
+
+        .config-step h3 {
+          font-size: 1.2rem;
+        }
+
+        .product-option {
+          padding: 1.2rem 0.8rem;
+        }
+
+        .product-option .icon {
+          font-size: 2.2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header id="header" class="scrolled">
+      <div class="header-container">
+        <div class="logo-container">
+          <a href="index.html">
+            <img src="img/_logo.png" alt="ALUPRIME Logo" class="logo-img" />
+          </a>
+        </div>
+        <nav id="desktopNav">
+          <a href="index.html">Accueil</a>
+          <a href="produits.html">Produits</a>
+          <a href="realisations.html">Réalisations</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <a href="devis.html" class="btn btn-primary"
+          >Demander un Devis Gratuit</a
+        >
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Configurator Section -->
+    <section class="configurator">
+      <div class="container">
+        <div class="section-header">
+          <h2>Configurateur <span class="accent">Intelligent</span></h2>
+          <p>Obtenez votre estimation en quelques clics</p>
+        </div>
+
+        <div class="configurator-box">
+          <div class="progress-bar">
+            <div class="progress-steps">
+              <div class="step">
+                <div class="step-number active" id="stepNum1">1</div>
+                <div class="step-line" id="stepLine1"></div>
+              </div>
+              <div class="step">
+                <div class="step-number" id="stepNum2">2</div>
+                <div class="step-line" id="stepLine2"></div>
+              </div>
+              <div class="step">
+                <div class="step-number" id="stepNum3">3</div>
+                <div class="step-line" id="stepLine3"></div>
+              </div>
+              <div class="step">
+                <div class="step-number" id="stepNum4">4</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="config-content">
+            <div class="config-step active" id="step1">
+              <h3>Sélectionnez votre produit</h3>
+              <div class="product-grid">
+                <div class="product-option" data-product="cabine">
+                  <div class="icon"><i class="fas fa-shower"></i></div>
+                  <div>Cabine de Douche</div>
+                </div>
+                <div class="product-option" data-product="fenetre">
+                  <div class="icon"><i class="fas fa-window-maximize"></i></div>
+                  <div>Fenêtre</div>
+                </div>
+                <div class="product-option" data-product="porte">
+                  <div class="icon"><i class="fas fa-door-open"></i></div>
+                  <div>Porte</div>
+                </div>
+                <div class="product-option" data-product="baie">
+                  <div class="icon"><i class="fas fa-images"></i></div>
+                  <div>Baie Vitrée</div>
+                </div>
+                <div class="product-option" data-product="facade">
+                  <div class="icon"><i class="fas fa-building"></i></div>
+                  <div>Façade</div>
+                </div>
+                <div class="product-option" data-product="autre">
+                  <div class="icon"><i class="fas fa-ruler-combined"></i></div>
+                  <div>Sur Mesure</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="config-step" id="step2">
+              <h3>Dimensions et quantité</h3>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Largeur (cm)</label>
+                  <input
+                    type="number"
+                    id="width"
+                    placeholder="Ex: 120"
+                    min="30"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Hauteur (cm)</label>
+                  <input
+                    type="number"
+                    id="height"
+                    placeholder="Ex: 200"
+                    min="30"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Quantité</label>
+                  <input type="number" id="quantity" value="1" min="1" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Type / Finition</label>
+                <select id="finishType">
+                  <option value="standard">Standard</option>
+                  <option value="premium">Premium</option>
+                  <option value="luxe">Luxe</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Description de votre projet (optionnel)</label>
+                <textarea
+                  id="projectDesc"
+                  rows="4"
+                  placeholder="Décrivez votre projet en détails..."
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="config-step" id="step3">
+              <h3>Personnalisation</h3>
+              <div class="form-group">
+                <label>Couleur du profilé</label>
+                <div class="color-grid">
+                  <div class="color-option" data-color="blanc">⚪ Blanc</div>
+                  <div class="color-option" data-color="gris">⚫ Gris</div>
+                  <div class="color-option" data-color="noir">⬛ Noir</div>
+                  <div class="color-option" data-color="marron">🟤 Marron</div>
+                  <div class="color-option" data-color="beige">🟨 Beige</div>
+                  <div class="color-option" data-color="ral">
+                    <i class="fas fa-palette"></i> RAL
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="config-step" id="step4">
+              <h3>Vos coordonnées & Résumé</h3>
+
+              <div class="summary-box">
+                <h4 style="margin-bottom: 1rem">Résumé de votre devis</h4>
+                <div class="summary-item">
+                  <span>Produit:</span>
+                  <span id="summaryProduct">-</span>
+                </div>
+                <div class="summary-item">
+                  <span>Dimensions:</span>
+                  <span id="summaryDimensions">-</span>
+                </div>
+                <div class="summary-item">
+                  <span>Quantité:</span>
+                  <span id="summaryQuantity">-</span>
+                </div>
+                <div class="summary-item">
+                  <span>Estimation:</span>
+                  <span id="totalPrice">-</span>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Nom complet *</label>
+                  <input
+                    type="text"
+                    id="fullName"
+                    placeholder="Ex: Ahmed Ben Ali"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Téléphone *</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    placeholder="+216 XX XXX XXX"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder="votre@email.com"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Ville *</label>
+                  <input
+                    type="text"
+                    id="city"
+                    placeholder="Ex: Tunis"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Adresse complète</label>
+                <textarea
+                  id="address"
+                  rows="2"
+                  placeholder="Votre adresse..."
+                ></textarea>
+              </div>
+            </div>
+
+            <div class="config-actions">
+              <button
+                class="btn btn-outline"
+                id="prevBtn"
+                style="display: none"
+              >
+                ← Précédent
+              </button>
+              <button class="btn btn-primary" id="nextBtn">Suivant →</button>
+              <button
+                class="btn btn-primary"
+                id="submitBtn"
+                style="display: none"
+              >
+                Envoyer ma Demande
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h4>ALUPRIME</h4>
+            <p>
+              Excellence en menuiserie aluminium et solutions vitrées depuis 15
+              ans.
+            </p>
+          </div>
+
+          <div class="footer-col">
+            <h4>Navigation</h4>
+            <ul>
+              <li><a href="index.html">Accueil</a></li>
+              <li><a href="produits.html">Produits</a></li>
+              <li><a href="realisations.html">Réalisations</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <ul>
+              <li>
+                <strong>Tunis:</strong>
+                <a href="tel:+21620887138">20 887 138</a>
+              </li>
+              <li>
+                <strong>Djerba:</strong>
+                <a href="tel:+21621733259">21 733 259</a>
+              </li>
+              <li>
+                <a href="mailto:contact@aluprime.tn">contact@aluprime.tn</a>
+              </li>
+              <li>Tunis & Djerba, Tunisie</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© 2025 ALUPRIME. Tous droits réservés.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      let currentStep = 1;
+      const totalSteps = 4;
+      let configData = {
+        product: "",
+        width: 0,
+        height: 0,
+        quantity: 1,
+        color: "",
+      };
+
+      // Product selection
+      document.querySelectorAll(".product-option").forEach((option) => {
+        option.addEventListener("click", function () {
+          document
+            .querySelectorAll(".product-option")
+            .forEach((o) => o.classList.remove("selected"));
+          this.classList.add("selected");
+          configData.product = this.getAttribute("data-product");
+        });
+      });
+
+      // Color selection
+      document.querySelectorAll(".color-option").forEach((option) => {
+        option.addEventListener("click", function () {
+          document
+            .querySelectorAll(".color-option")
+            .forEach((o) => o.classList.remove("selected"));
+          this.classList.add("selected");
+          configData.color = this.getAttribute("data-color");
+        });
+      });
+
+      function updateStepDisplay() {
+        document
+          .querySelectorAll(".config-step")
+          .forEach((step) => step.classList.remove("active"));
+        document.getElementById(`step${currentStep}`).classList.add("active");
+
+        for (let i = 1; i <= totalSteps; i++) {
+          const stepNum = document.getElementById(`stepNum${i}`);
+          const stepLine = document.getElementById(`stepLine${i}`);
+
+          if (i < currentStep) {
+            stepNum.classList.add("active");
+            if (stepLine) stepLine.classList.add("active");
+          } else if (i === currentStep) {
+            stepNum.classList.add("active");
+            if (stepLine) stepLine.classList.remove("active");
+          } else {
+            stepNum.classList.remove("active");
+            if (stepLine) stepLine.classList.remove("active");
+          }
+        }
+
+        document.getElementById("prevBtn").style.display =
+          currentStep === 1 ? "none" : "inline-block";
+        document.getElementById("nextBtn").style.display =
+          currentStep === totalSteps ? "none" : "inline-block";
+        document.getElementById("submitBtn").style.display =
+          currentStep === totalSteps ? "inline-block" : "none";
+
+        if (currentStep === 4) {
+          updateSummary();
+          calculatePrice();
+        }
+      }
+
+      document.getElementById("nextBtn").addEventListener("click", () => {
+        if (validateStep(currentStep)) {
+          if (currentStep < totalSteps) {
+            currentStep++;
+            updateStepDisplay();
+          }
+        }
+      });
+
+      document.getElementById("prevBtn").addEventListener("click", () => {
+        if (currentStep > 1) {
+          currentStep--;
+          updateStepDisplay();
+        }
+      });
+
+      function validateStep(step) {
+        if (step === 1 && !configData.product) {
+          alert("Veuillez sélectionner un type de produit");
+          return false;
+        }
+        if (step === 2) {
+          const width = document.getElementById("width").value;
+          const height = document.getElementById("height").value;
+          if (!width || !height || width < 30 || height < 30) {
+            alert("Veuillez entrer des dimensions valides (minimum 30cm)");
+            return false;
+          }
+          configData.width = parseFloat(width);
+          configData.height = parseFloat(height);
+          configData.quantity = parseInt(
+            document.getElementById("quantity").value
+          );
+        }
+        if (step === 3 && !configData.color) {
+          alert("Veuillez sélectionner une couleur");
+          return false;
+        }
+        return true;
+      }
+
+      function updateSummary() {
+        const productNames = {
+          cabine: "Cabine de Douche",
+          fenetre: "Fenêtre",
+          porte: "Porte",
+          baie: "Baie Vitrée",
+          facade: "Façade",
+          autre: "Sur Mesure",
+        };
+
+        document.getElementById("summaryProduct").textContent =
+          productNames[configData.product] || "-";
+        document.getElementById(
+          "summaryDimensions"
+        ).textContent = `${configData.width} × ${configData.height} cm`;
+        document.getElementById("summaryQuantity").textContent =
+          configData.quantity;
+      }
+
+      function calculatePrice() {
+        const basePrices = {
+          cabine: 400,
+          fenetre: 200,
+          porte: 250,
+          baie: 280,
+          facade: 320,
+          autre: 300,
+        };
+        let basePrice = basePrices[configData.product] || 200;
+        const area = (configData.width * configData.height) / 10000;
+        let totalPrice = basePrice * area * configData.quantity;
+
+        document.getElementById("totalPrice").textContent =
+          Math.round(totalPrice).toLocaleString() + " DT";
+      }
+
+      document.getElementById("submitBtn").addEventListener("click", () => {
+        const fullName = document.getElementById("fullName").value;
+        const phone = document.getElementById("phone").value;
+        const city = document.getElementById("city").value;
+
+        if (!fullName || !phone || !city) {
+          alert("Veuillez remplir tous les champs obligatoires");
+          return;
+        }
+
+        alert(
+          `Merci ${fullName} !\n\nVotre demande a été envoyée.\nNous vous contactons sous 24h.`
+        );
+        window.location.href = "index.html";
+      });
+
+      updateStepDisplay();
+    </script>
+  </body>
+</html>

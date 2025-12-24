@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nos Réalisations - ALUPRIME</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="icon" type="image/png" href="img/_logo.png" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header id="header" class="scrolled">
+      <div class="header-container">
+        <div class="logo-container">
+          <a href="index.html">
+            <img src="img/_logo.png" alt="ALUPRIME Logo" class="logo-img" />
+          </a>
+        </div>
+        <nav id="desktopNav">
+          <a href="index.html">Accueil</a>
+          <a href="produits.html">Produits</a>
+          <a href="realisations.html">Réalisations</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+        <a href="devis.html" class="btn btn-primary"
+          >Demander un Devis Gratuit</a
+        >
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section
+      style="
+        padding-top: 10rem;
+        padding-bottom: 3rem;
+        background: linear-gradient(135deg, var(--navy) 0%, #1a2a3f 100%);
+        color: white;
+        text-align: center;
+      "
+    >
+      <div class="container">
+        <h1
+          style="
+            color: white;
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            margin-bottom: 1.5rem;
+          "
+        >
+          Nos <span style="color: var(--red)">Réalisations</span>
+        </h1>
+        <p
+          style="
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.9);
+          "
+        >
+          Découvrez nos projets réalisés à travers toute la Tunisie
+        </p>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section style="background: var(--off-white)">
+      <div class="container">
+        <div class="section-header">
+          <h2>Galerie <span class="accent">Projets</span></h2>
+          <p>Plus de 2000 projets réalisés avec succès</p>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="img/IMG_1070.jpg" alt="Installation fenêtre aluminium" />
+            <div class="overlay">
+              <h4>Fenêtres Résidentielles</h4>
+              <p>Villa - Tunis • 12 fenêtres aluminium</p>
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <img src="img/IMG_1071.jpg" alt="Porte entrée aluminium" />
+            <div class="overlay">
+              <h4>Porte d'Entrée Design</h4>
+              <p>Résidence - Sousse • Sécurité renforcée</p>
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <img src="img/IMG_1202.JPG" alt="Cabine douche moderne" />
+            <div class="overlay">
+              <h4>Cabine de Douche Premium</h4>
+              <p>Appartement - Hammamet • Verre sécurit 8mm</p>
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <img src="img/IMG_1203.JPG" alt="Baie vitrée coulissante" />
+            <div class="overlay">
+              <h4>Baie Vitrée Coulissante</h4>
+              <p>Villa luxe - La Marsa • Système galandage</p>
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <img src="img/IMG_1206.JPG" alt="Façade vitrée immeuble" />
+            <div class="overlay">
+              <h4>Façade Vitrée Commerciale</h4>
+              <p>Immeuble - Sfax • Mur rideau aluminium</p>
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <img src="img/IMG_1208.JPG" alt="Pergola aluminium" />
+            <div class="overlay">
+              <h4>Pergola Aluminium</h4>
+              <p>Terrasse - Monastir • Toiture polycarbonate</p>
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <img src="img/IMG_1210.JPG" alt="Garde-corps verre" />
+            <div class="overlay">
+              <h4>Garde-Corps Design</h4>
+              <p>Balcon - Bizerte • Verre trempé</p>
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <img src="img/IMG_1218.JPG" alt="Installation menuiserie" />
+            <div class="overlay">
+              <h4>Menuiserie Complète</h4>
+              <p>Rénovation - Nabeul • Projet clé en main</p>
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <img src="img/IMG_1219.JPG" alt="Fenêtres moderne" />
+            <div class="overlay">
+              <h4>Fenêtres Modernes</h4>
+              <p>Bureau - Tunis • Double vitrage isolant</p>
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <img src="img/IMG_1220.JPG" alt="Salle bain aluminium" />
+            <div class="overlay">
+              <h4>Rénovation Salle de Bain</h4>
+              <p>Appartement - Ariana • Cabine + miroirs</p>
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <img src="img/IMG_1222.JPG" alt="Vitrine commerciale" />
+            <div class="overlay">
+              <h4>Vitrine Commerciale</h4>
+              <p>Magasin - Centre-ville • Verre sécurisé</p>
+            </div>
+          </div>
+
+          <div class="gallery-item">
+            <img
+              src="img/493570ba-f1e6-4f07-8690-f2bca0bdf534.JPG"
+              alt="Projet aluminium"
+            />
+            <div class="overlay">
+              <h4>Projet Sur Mesure</h4>
+              <p>Résidence - Mahdia • Design personnalisé</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials">
+      <div class="container">
+        <div class="section-header">
+          <h2>Témoignages <span class="accent">Clients</span></h2>
+          <p>Ce que nos clients disent de nous</p>
+        </div>
+
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+          "
+        >
+          <div
+            style="
+              background: white;
+              padding: 2.5rem;
+              border-radius: 20px;
+              box-shadow: 0 10px 30px rgba(15, 27, 42, 0.08);
+            "
+          >
+            <div
+              style="color: #fbbf24; margin-bottom: 1.5rem; font-size: 1.3rem"
+            >
+              ⭐⭐⭐⭐⭐
+            </div>
+            <p
+              style="
+                font-style: italic;
+                color: var(--gray);
+                margin-bottom: 2rem;
+                line-height: 1.8;
+              "
+            >
+              "Service impeccable ! Qualité professionnelle et installation
+              rapide. Je recommande vivement ALUPRIME pour tous vos projets en
+              aluminium."
+            </p>
+            <div style="display: flex; align-items: center; gap: 1rem">
+              <div
+                style="
+                  width: 55px;
+                  height: 55px;
+                  border-radius: 50%;
+                  background: linear-gradient(135deg, var(--navy), var(--red));
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: white;
+                  font-weight: 700;
+                  font-size: 1.5rem;
+                "
+              >
+                M
+              </div>
+              <div>
+                <div style="font-weight: 700; color: var(--navy)">
+                  Mohamed Trabelsi
+                </div>
+                <div style="font-size: 0.9rem; color: var(--gray)">
+                  Villa à Hammamet
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="
+              background: white;
+              padding: 2.5rem;
+              border-radius: 20px;
+              box-shadow: 0 10px 30px rgba(15, 27, 42, 0.08);
+            "
+          >
+            <div
+              style="color: #fbbf24; margin-bottom: 1.5rem; font-size: 1.3rem"
+            >
+              ⭐⭐⭐⭐⭐
+            </div>
+            <p
+              style="
+                font-style: italic;
+                color: var(--gray);
+                margin-bottom: 2rem;
+                line-height: 1.8;
+              "
+            >
+              "Excellent travail ! La cabine de douche a complètement transformé
+              notre salle de bain. Qualité exceptionnelle, prix compétitif."
+            </p>
+            <div style="display: flex; align-items: center; gap: 1rem">
+              <div
+                style="
+                  width: 55px;
+                  height: 55px;
+                  border-radius: 50%;
+                  background: linear-gradient(135deg, var(--navy), var(--red));
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: white;
+                  font-weight: 700;
+                  font-size: 1.5rem;
+                "
+              >
+                S
+              </div>
+              <div>
+                <div style="font-weight: 700; color: var(--navy)">
+                  Sarah Ben Ahmed
+                </div>
+                <div style="font-size: 0.9rem; color: var(--gray)">
+                  Appartement Sousse
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="
+              background: white;
+              padding: 2.5rem;
+              border-radius: 20px;
+              box-shadow: 0 10px 30px rgba(15, 27, 42, 0.08);
+            "
+          >
+            <div
+              style="color: #fbbf24; margin-bottom: 1.5rem; font-size: 1.3rem"
+            >
+              ⭐⭐⭐⭐⭐
+            </div>
+            <p
+              style="
+                font-style: italic;
+                color: var(--gray);
+                margin-bottom: 2rem;
+                line-height: 1.8;
+              "
+            >
+              "Travail professionnel de A à Z. L'équipe est réactive, les délais
+              sont respectés. Je referai appel à eux sans hésiter."
+            </p>
+            <div style="display: flex; align-items: center; gap: 1rem">
+              <div
+                style="
+                  width: 55px;
+                  height: 55px;
+                  border-radius: 50%;
+                  background: linear-gradient(135deg, var(--navy), var(--red));
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: white;
+                  font-weight: 700;
+                  font-size: 1.5rem;
+                "
+              >
+                K
+              </div>
+              <div>
+                <div style="font-weight: 700; color: var(--navy)">
+                  Karim Bouazizi
+                </div>
+                <div style="font-size: 0.9rem; color: var(--gray)">
+                  Commerce Sfax
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="
+              background: white;
+              padding: 2.5rem;
+              border-radius: 20px;
+              box-shadow: 0 10px 30px rgba(15, 27, 42, 0.08);
+            "
+          >
+            <div
+              style="color: #fbbf24; margin-bottom: 1.5rem; font-size: 1.3rem"
+            >
+              ⭐⭐⭐⭐⭐
+            </div>
+            <p
+              style="
+                font-style: italic;
+                color: var(--gray);
+                margin-bottom: 2rem;
+                line-height: 1.8;
+              "
+            >
+              "Très satisfait de la façade vitrée installée. Design moderne et
+              finitions impeccables. Équipe professionnelle et à l'écoute."
+            </p>
+            <div style="display: flex; align-items: center; gap: 1rem">
+              <div
+                style="
+                  width: 55px;
+                  height: 55px;
+                  border-radius: 50%;
+                  background: linear-gradient(135deg, var(--navy), var(--red));
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: white;
+                  font-weight: 700;
+                  font-size: 1.5rem;
+                "
+              >
+                A
+              </div>
+              <div>
+                <div style="font-weight: 700; color: var(--navy)">
+                  Ahmed Nasri
+                </div>
+                <div style="font-size: 0.9rem; color: var(--gray)">
+                  Immeuble Tunis
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="
+              background: white;
+              padding: 2.5rem;
+              border-radius: 20px;
+              box-shadow: 0 10px 30px rgba(15, 27, 42, 0.08);
+            "
+          >
+            <div
+              style="color: #fbbf24; margin-bottom: 1.5rem; font-size: 1.3rem"
+            >
+              ⭐⭐⭐⭐⭐
+            </div>
+            <p
+              style="
+                font-style: italic;
+                color: var(--gray);
+                margin-bottom: 2rem;
+                line-height: 1.8;
+              "
+            >
+              "Pergola magnifique ! La qualité des matériaux et l'installation
+              sont irréprochables. Notre terrasse est maintenant notre espace
+              préféré."
+            </p>
+            <div style="display: flex; align-items: center; gap: 1rem">
+              <div
+                style="
+                  width: 55px;
+                  height: 55px;
+                  border-radius: 50%;
+                  background: linear-gradient(135deg, var(--navy), var(--red));
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: white;
+                  font-weight: 700;
+                  font-size: 1.5rem;
+                "
+              >
+                L
+              </div>
+              <div>
+                <div style="font-weight: 700; color: var(--navy)">
+                  Leila Gharbi
+                </div>
+                <div style="font-size: 0.9rem; color: var(--gray)">
+                  Villa Monastir
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="
+              background: white;
+              padding: 2.5rem;
+              border-radius: 20px;
+              box-shadow: 0 10px 30px rgba(15, 27, 42, 0.08);
+            "
+          >
+            <div
+              style="color: #fbbf24; margin-bottom: 1.5rem; font-size: 1.3rem"
+            >
+              ⭐⭐⭐⭐⭐
+            </div>
+            <p
+              style="
+                font-style: italic;
+                color: var(--gray);
+                margin-bottom: 2rem;
+                line-height: 1.8;
+              "
+            >
+              "Fenêtres aluminium de très haute qualité. Isolation thermique
+              excellente, on sent vraiment la différence. Prix très
+              raisonnable."
+            </p>
+            <div style="display: flex; align-items: center; gap: 1rem">
+              <div
+                style="
+                  width: 55px;
+                  height: 55px;
+                  border-radius: 50%;
+                  background: linear-gradient(135deg, var(--navy), var(--red));
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: white;
+                  font-weight: 700;
+                  font-size: 1.5rem;
+                "
+              >
+                F
+              </div>
+              <div>
+                <div style="font-weight: 700; color: var(--navy)">
+                  Farouk Mansouri
+                </div>
+                <div style="font-size: 0.9rem; color: var(--gray)">
+                  Maison Nabeul
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section
+      style="
+        background: linear-gradient(135deg, var(--red) 0%, #8d1318 100%);
+        color: white;
+        text-align: center;
+      "
+    >
+      <div class="container">
+        <h2
+          style="
+            color: white;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 2rem;
+          "
+        >
+          Votre Projet Commence Ici
+        </h2>
+        <p
+          style="
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            color: rgba(255, 255, 255, 0.95);
+          "
+        >
+          Rejoignez nos +2000 clients satisfaits
+        </p>
+        <a
+          href="devis.html"
+          class="btn btn-large"
+          style="
+            background: white;
+            color: var(--red);
+            font-size: 1.2rem;
+            padding: 1.3rem 3rem;
+          "
+        >
+          Demander un Devis Gratuit
+        </a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h4>ALUPRIME</h4>
+            <p>
+              Excellence en menuiserie aluminium et solutions vitrées depuis 15
+              ans.
+            </p>
+          </div>
+
+          <div class="footer-col">
+            <h4>Navigation</h4>
+            <ul>
+              <li><a href="index.html">Accueil</a></li>
+              <li><a href="produits.html">Produits</a></li>
+              <li><a href="realisations.html">Réalisations</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Produits</h4>
+            <ul>
+              <li><a href="produits.html#cabines">Cabines de Douche</a></li>
+              <li><a href="produits.html#fenetres">Fenêtres</a></li>
+              <li><a href="produits.html#portes">Portes</a></li>
+              <li><a href="produits.html#facades">Façades Vitrées</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <ul>
+              <li>
+                <strong>Tunis:</strong>
+                <a href="tel:+21620887138">20 887 138</a>
+              </li>
+              <li>
+                <strong>Djerba:</strong>
+                <a href="tel:+21621733259">21 733 259</a>
+              </li>
+              <li>
+                <a href="mailto:contact@aluprime.tn">contact@aluprime.tn</a>
+              </li>
+              <li>Tunis & Djerba, Tunisie</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© 2025 ALUPRIME. Tous droits réservés.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
