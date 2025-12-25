@@ -11,61 +11,55 @@ window.addEventListener("scroll", () => {
 // Mobile Menu Toggle
 const mobileMenuBtn = document.getElementById("mobileMenuBtn");
 const desktopNav = document.getElementById("desktopNav");
+const headerBtnPrimary = document.querySelector(".header-container .btn-primary");
 
 if (mobileMenuBtn && desktopNav) {
   mobileMenuBtn.addEventListener("click", () => {
-    const isOpen = desktopNav.style.display === "flex";
+    const isOpen = desktopNav.classList.contains("mobile-active");
     
     if (isOpen) {
-      desktopNav.style.display = "none";
+      desktopNav.classList.remove("mobile-active");
       mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
     } else {
-      desktopNav.style.display = "flex";
-      desktopNav.style.position = "absolute";
-      desktopNav.style.top = "100%";
-      desktopNav.style.left = "0";
-      desktopNav.style.right = "0";
-      desktopNav.style.background = "white";
-      desktopNav.style.flexDirection = "column";
-      desktopNav.style.padding = "1.5rem";
-      desktopNav.style.boxShadow = "0 10px 30px rgba(0,0,0,0.15)";
-      desktopNav.style.gap = "0.8rem";
-      desktopNav.style.zIndex = "999";
+      desktopNav.classList.add("mobile-active");
       mobileMenuBtn.innerHTML = '<i class="fas fa-times"></i>';
       
-      // Style les liens du menu mobile
-      const navLinks = desktopNav.querySelectorAll("a");
-      navLinks.forEach(link => {
-        link.style.color = "var(--navy)";
-        link.style.padding = "0.8rem 1rem";
-        link.style.borderRadius = "8px";
-        link.style.transition = "all 0.3s ease";
-        link.addEventListener("mouseenter", () => {
-          link.style.background = "var(--off-white)";
-        });
-        link.addEventListener("mouseleave", () => {
-          link.style.background = "transparent";
-        });
-      });
+      // Ajouter le bouton devis au menu mobile s'il n'existe pas déjà
+      if (headerBtnPrimary && !desktopNav.querySelector(".mobile-devis-btn")) {
+        const mobileDevisBtn = document.createElement("a");
+        mobileDevisBtn.href = "devis.html";
+        mobileDevisBtn.className = "mobile-devis-btn";
+        mobileDevisBtn.textContent = "Demander un Devis Gratuit";
+        mobileDevisBtn.style.cssText = `
+          background: var(--red);
+          color: white;
+          padding: 0.85rem 1.2rem;
+          border-radius: 8px;
+          text-align: center;
+          font-weight: 600;
+          margin-top: 0.5rem;
+          font-size: 0.9rem;
+        `;
+        desktopNav.appendChild(mobileDevisBtn);
+      }
     }
   });
 
   // Fermer le menu quand on clique sur un lien
-  const navLinks = desktopNav.querySelectorAll("a");
-  navLinks.forEach(link => {
-    link.addEventListener("click", () => {
+  document.addEventListener("click", (e) => {
+    if (e.target.closest("#desktopNav a")) {
       if (window.innerWidth <= 968) {
-        desktopNav.style.display = "none";
+        desktopNav.classList.remove("mobile-active");
         mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
       }
-    });
+    }
   });
 
   // Fermer le menu si on clique ailleurs
   document.addEventListener("click", (e) => {
     if (window.innerWidth <= 968) {
       if (!mobileMenuBtn.contains(e.target) && !desktopNav.contains(e.target)) {
-        desktopNav.style.display = "none";
+        desktopNav.classList.remove("mobile-active");
         mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
       }
     }
