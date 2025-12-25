@@ -36,16 +36,38 @@ if (mobileMenuBtn && desktopNav) {
       // Style les liens du menu mobile
       const navLinks = desktopNav.querySelectorAll("a");
       navLinks.forEach(link => {
-        link.style.color = "var(--navy)";
-        link.style.padding = "0.8rem 1rem";
-        link.style.borderRadius = "8px";
-        link.style.transition = "all 0.3s ease";
-        link.addEventListener("mouseenter", () => {
-          link.style.background = "var(--off-white)";
-        });
-        link.addEventListener("mouseleave", () => {
-          link.style.background = "transparent";
-        });
+        // Style spécial pour le bouton devis
+        if (link.classList.contains('nav-devis-btn')) {
+          link.style.display = "block";
+          link.style.background = "var(--red)";
+          link.style.color = "white";
+          link.style.padding = "0.9rem 1rem";
+          link.style.borderRadius = "8px";
+          link.style.fontWeight = "600";
+          link.style.textAlign = "center";
+          link.style.marginTop = "0.5rem";
+          link.style.transition = "all 0.3s ease";
+          link.addEventListener("mouseenter", () => {
+            link.style.background = "#8d1318";
+            link.style.transform = "translateY(-2px)";
+          });
+          link.addEventListener("mouseleave", () => {
+            link.style.background = "var(--red)";
+            link.style.transform = "translateY(0)";
+          });
+        } else {
+          // Style normal pour les autres liens
+          link.style.color = "var(--navy)";
+          link.style.padding = "0.8rem 1rem";
+          link.style.borderRadius = "8px";
+          link.style.transition = "all 0.3s ease";
+          link.addEventListener("mouseenter", () => {
+            link.style.background = "var(--off-white)";
+          });
+          link.addEventListener("mouseleave", () => {
+            link.style.background = "transparent";
+          });
+        }
       });
     }
   });
