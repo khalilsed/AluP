@@ -26,6 +26,13 @@ img {
   display: block;
 }
 
+/* Ensure proper image containment */
+picture,
+figure {
+  max-width: 100%;
+  display: block;
+}
+
 body {
   font-family: "Inter", sans-serif;
   line-height: 1.6;
@@ -164,6 +171,11 @@ header.scrolled .mobile-menu-btn {
   color: var(--navy);
 }
 
+/* Navigation Devis Button (visible only in mobile menu) */
+.nav-devis-btn {
+  display: none;
+}
+
 /* Hero Section with Carousel */
 .hero {
   min-height: 100vh;
@@ -284,12 +296,14 @@ header.scrolled .mobile-menu-btn {
   display: flex;
   gap: 1.5rem;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .btn-large {
   padding: 1.2rem 2.5rem;
   font-size: 1.1rem;
   border-radius: 10px;
+  white-space: nowrap;
 }
 
 .btn-outline {
@@ -367,6 +381,7 @@ section {
 .container {
   max-width: 1400px;
   margin: 0 auto;
+  padding: 0 1rem;
 }
 
 .section-header {
@@ -641,6 +656,26 @@ footer {
 }
 
 /* Responsive */
+/* Extra Large Screens - 1400px and up */
+@media (min-width: 1400px) {
+  .header-container,
+  .container {
+    max-width: 1400px;
+  }
+}
+
+/* Large Desktop - 1200px to 1400px */
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .header-container {
+    padding: 1rem 2.5rem;
+  }
+
+  .btn-header-devis {
+    padding: 0.8rem 1.8rem;
+    font-size: 0.9rem;
+  }
+}
+
 @media (max-width: 1200px) {
   .header-container {
     padding: 1rem 2rem;
@@ -673,9 +708,9 @@ footer {
     height: 40px;
   }
 
-  .btn-primary {
-    padding: 0.65rem 1.2rem;
-    font-size: 0.85rem;
+  .btn-header-devis {
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
   }
 
   /* Hero Section Mobile */
@@ -725,11 +760,15 @@ footer {
   /* Buttons Mobile */
   .hero-buttons {
     gap: 1rem;
+    width: 100%;
   }
 
-  .btn-large {
-    padding: 1rem 1.8rem;
-    font-size: 0.95rem;
+  .hero-buttons .btn-large {
+    padding: 0.9rem 1.5rem;
+    font-size: 0.9rem;
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
   }
 
   /* Section Headers Mobile */
@@ -834,6 +873,22 @@ footer {
   }
 }
 
+/* Tablet/Medium Mobile (641px - 968px) - Better button handling */
+@media (min-width: 641px) and (max-width: 968px) {
+  .hero-buttons {
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .hero-buttons .btn-large {
+    flex: 1;
+    max-width: 280px;
+    padding: 1rem 1.5rem;
+    font-size: 0.95rem;
+  }
+}
+
 @media (max-width: 640px) {
   .header-container {
     padding: 0.7rem 1rem;
@@ -843,9 +898,9 @@ footer {
     height: 35px;
   }
 
-  .btn-primary {
-    padding: 0.6rem 1rem;
-    font-size: 0.8rem;
+  .btn-header-devis {
+    padding: 0.55rem 0.9rem;
+    font-size: 0.75rem;
   }
 
   /* Hero Mobile Small */
@@ -900,12 +955,13 @@ footer {
   .hero-buttons {
     flex-direction: column;
     gap: 0.8rem;
+    width: 100%;
   }
 
-  .btn-large {
+  .hero-buttons .btn-large {
     width: 100%;
-    padding: 0.9rem 1.5rem;
-    font-size: 0.9rem;
+    padding: 0.85rem 1.2rem;
+    font-size: 0.85rem;
   }
 
   .btn {
@@ -1053,7 +1109,7 @@ footer {
     height: 32px;
   }
 
-  .btn-primary {
+  .btn-header-devis {
     display: none;
   }
 
@@ -1083,9 +1139,9 @@ footer {
     font-size: 0.75rem;
   }
 
-  .btn-large {
-    padding: 0.85rem 1.2rem;
-    font-size: 0.85rem;
+  .hero-buttons .btn-large {
+    padding: 0.8rem 1rem;
+    font-size: 0.8rem;
   }
 
   .product-card {
@@ -1127,5 +1183,72 @@ footer {
   /* Testimonials Extra Small */
   .testimonial-card {
     padding: 1.2rem 1rem;
+  }
+}
+
+/* Extra Small Devices - 360px and below */
+@media (max-width: 360px) {
+  .header-container {
+    padding: 0.5rem 0.6rem;
+  }
+
+  .logo-img {
+    height: 28px;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.4rem, 11vw, 1.8rem);
+  }
+
+  .hero-buttons .btn-large {
+    padding: 0.75rem 0.9rem;
+    font-size: 0.75rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-card {
+    padding: 0.8rem;
+  }
+
+  .section-header h2 {
+    font-size: clamp(1.4rem, 8vw, 2rem);
+  }
+
+  .product-card {
+    padding: 1rem 0.8rem;
+  }
+}
+
+/* Landscape Orientation Optimizations */
+@media (max-height: 600px) and (orientation: landscape) {
+  .hero {
+    min-height: 100vh;
+  }
+
+  .hero-content {
+    padding: 1rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .stat-card {
+    padding: 0.8rem 0.5rem;
+  }
+
+  .hero-buttons {
+    flex-direction: row;
+    gap: 0.8rem;
+  }
+
+  .hero-buttons .btn-large {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.85rem;
   }
 }
